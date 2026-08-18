@@ -1,0 +1,21 @@
+# Model weights
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.h5
+*.onnx
+*.bin
+squashai_data/
+yolo_dataset/
+
+# Media files
+*.mp4
+*.mov
+*.avi
+*.mp3
+*.wav
+*.png
+*.jpg
+*.jpeg
+*.gif
