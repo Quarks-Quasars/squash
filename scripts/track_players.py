@@ -10,7 +10,7 @@ Run on GPU (default):
 
 Run on CPU (fallback / debugging):
     python track.py --video match_clip.mp4 --weights best.pt --device cpu
-"""
+""" 
 
 import argparse
 import csv
@@ -65,7 +65,7 @@ def box_center(box):
 
 def spatial_proximity(boxA, boxB, frame_diag):
     """1.0 if same spot, decaying toward 0.0 as centers get farther apart,
-    normalized by the frame's diagonal so it's resolution-independent."""
+    normalized by the frame's diagonal so it's resolution-independent. """
     cA, cB = box_center(boxA), box_center(boxB)
     dist = np.hypot(cA[0] - cB[0], cA[1] - cB[1])
     return max(0.0, 1.0 - dist / frame_diag)
@@ -95,7 +95,7 @@ def run_bytetrack(video_path, weights_path, out_path, conf_thresh, device,
     before - two simultaneously-visible players both getting labeled the
     same id when their appearance briefly looked similar (motion blur,
     lighting near a wall, etc). Since we always know there are at most
-    max_players people on screen, this constraint alone rules out that
+    max_players people on screen, this constraint  alone rules out that
     failure mode regardless of how noisy the appearance signal gets.
     """
     model = YOLO(weights_path)
@@ -397,8 +397,8 @@ def run_deepsort(video_path, weights_path, out_path, conf_thresh, device):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--video", default=r"C:\Users\light\datasets\media\videos\Single_camera_squash.mov")
-    parser.add_argument("--weights", default=r"C:\Users\light\datasets\runs\detect\runs\squash_player_det\yolo26n_finetune\weights\best.pt")
+    parser.add_argument("--video", default=r"C:\Users\light\datasets\media\videos\squash_2.webm")
+    parser.add_argument("--weights", default=r"C:\Users\light\datasets\runs\detect\runs\squash_player_det\yolo26n_finetune\weights\best_player.pt")
     parser.add_argument("--out", default=r"C:\Users\light\datasets\runs\coordinates\track_v2.mp4")
     parser.add_argument("--conf", type=float, default=0.4)
     parser.add_argument("--tracker", choices=["deepsort", "bytetrack"], default="bytetrack")
